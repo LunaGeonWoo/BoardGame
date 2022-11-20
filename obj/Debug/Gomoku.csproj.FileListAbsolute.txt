@@ -1,0 +1,11 @@
+C:\Users\B207\Desktop\수강생206\문건우\Gomoku\bin\Debug\Gomoku.exe.config
+C:\Users\B207\Desktop\수강생206\문건우\Gomoku\bin\Debug\Gomoku.exe
+C:\Users\B207\Desktop\수강생206\문건우\Gomoku\bin\Debug\Gomoku.pdb
+C:\Users\B207\Desktop\수강생206\문건우\Gomoku\obj\Debug\Gomoku.csproj.AssemblyReference.cache
+C:\Users\B207\Desktop\수강생206\문건우\Gomoku\obj\Debug\Gomoku.csproj.SuggestedBindingRedirects.cache
+C:\Users\B207\Desktop\수강생206\문건우\Gomoku\obj\Debug\Gomoku.MainApp.resources
+C:\Users\B207\Desktop\수강생206\문건우\Gomoku\obj\Debug\Gomoku.Properties.Resources.resources
+C:\Users\B207\Desktop\수강생206\문건우\Gomoku\obj\Debug\Gomoku.csproj.GenerateResource.cache
+C:\Users\B207\Desktop\수강생206\문건우\Gomoku\obj\Debug\Gomoku.csproj.CoreCompileInputs.cache
+C:\Users\B207\Desktop\수강생206\문건우\Gomoku\obj\Debug\Gomoku.exe
+C:\Users\B207\Desktop\수강생206\문건우\Gomoku\obj\Debug\Gomoku.pdb
