@@ -35,7 +35,7 @@
             this.오목ToolStripMenuItem = new System.Windows.Forms.ToolStripMenuItem();
             this.바둑ToolStripMenuItem = new System.Windows.Forms.ToolStripMenuItem();
             this.turnToolStripTextBox = new System.Windows.Forms.ToolStripTextBox();
-            this.turnMarkToolStripTextBox = new System.Windows.Forms.ToolStripTextBox();
+            this.다시하기ToolStripMenuItem = new System.Windows.Forms.ToolStripMenuItem();
             this.menuStrip.SuspendLayout();
             this.SuspendLayout();
             // 
@@ -48,13 +48,13 @@
             this.boardPanel.TabIndex = 0;
             this.boardPanel.Paint += new System.Windows.Forms.PaintEventHandler(this.boardPanel_Paint);
             this.boardPanel.MouseDown += new System.Windows.Forms.MouseEventHandler(this.boardPanel_MouseDown);
+            this.boardPanel.MouseMove += new System.Windows.Forms.MouseEventHandler(this.boardPanel_MouseMove);
             // 
             // menuStrip
             // 
             this.menuStrip.Items.AddRange(new System.Windows.Forms.ToolStripItem[] {
             this.메뉴ToolStripMenuItem,
-            this.turnToolStripTextBox,
-            this.turnMarkToolStripTextBox});
+            this.turnToolStripTextBox});
             this.menuStrip.Location = new System.Drawing.Point(0, 0);
             this.menuStrip.Name = "menuStrip";
             this.menuStrip.Size = new System.Drawing.Size(760, 26);
@@ -64,9 +64,10 @@
             // 메뉴ToolStripMenuItem
             // 
             this.메뉴ToolStripMenuItem.DropDownItems.AddRange(new System.Windows.Forms.ToolStripItem[] {
+            this.다시하기ToolStripMenuItem,
             this.게임ToolStripMenuItem});
             this.메뉴ToolStripMenuItem.Name = "메뉴ToolStripMenuItem";
-            this.메뉴ToolStripMenuItem.Size = new System.Drawing.Size(43, 25);
+            this.메뉴ToolStripMenuItem.Size = new System.Drawing.Size(43, 22);
             this.메뉴ToolStripMenuItem.Text = "메뉴";
             // 
             // 게임ToolStripMenuItem
@@ -81,13 +82,13 @@
             // 오목ToolStripMenuItem
             // 
             this.오목ToolStripMenuItem.Name = "오목ToolStripMenuItem";
-            this.오목ToolStripMenuItem.Size = new System.Drawing.Size(98, 22);
+            this.오목ToolStripMenuItem.Size = new System.Drawing.Size(180, 22);
             this.오목ToolStripMenuItem.Text = "오목";
             // 
             // 바둑ToolStripMenuItem
             // 
             this.바둑ToolStripMenuItem.Name = "바둑ToolStripMenuItem";
-            this.바둑ToolStripMenuItem.Size = new System.Drawing.Size(98, 22);
+            this.바둑ToolStripMenuItem.Size = new System.Drawing.Size(180, 22);
             this.바둑ToolStripMenuItem.Text = "바둑";
             // 
             // turnToolStripTextBox
@@ -98,19 +99,16 @@
             this.turnToolStripTextBox.Font = new System.Drawing.Font("궁서체", 9.75F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(129)));
             this.turnToolStripTextBox.Name = "turnToolStripTextBox";
             this.turnToolStripTextBox.ReadOnly = true;
-            this.turnToolStripTextBox.Size = new System.Drawing.Size(48, 25);
+            this.turnToolStripTextBox.Size = new System.Drawing.Size(48, 22);
             this.turnToolStripTextBox.TextBoxTextAlign = System.Windows.Forms.HorizontalAlignment.Right;
             // 
-            // turnMarkToolStripTextBox
+            // 다시하기ToolStripMenuItem
             // 
-            this.turnMarkToolStripTextBox.Alignment = System.Windows.Forms.ToolStripItemAlignment.Right;
-            this.turnMarkToolStripTextBox.BackColor = System.Drawing.Color.White;
-            this.turnMarkToolStripTextBox.Font = new System.Drawing.Font("궁서체", 9.75F, System.Drawing.FontStyle.Bold);
-            this.turnMarkToolStripTextBox.Name = "turnMarkToolStripTextBox";
-            this.turnMarkToolStripTextBox.ReadOnly = true;
-            this.turnMarkToolStripTextBox.Size = new System.Drawing.Size(60, 22);
-            this.turnMarkToolStripTextBox.Text = "검은 돌";
-            this.turnMarkToolStripTextBox.TextBoxTextAlign = System.Windows.Forms.HorizontalAlignment.Right;
+            this.다시하기ToolStripMenuItem.Name = "다시하기ToolStripMenuItem";
+            this.다시하기ToolStripMenuItem.ShortcutKeys = ((System.Windows.Forms.Keys)((System.Windows.Forms.Keys.Control | System.Windows.Forms.Keys.R)));
+            this.다시하기ToolStripMenuItem.Size = new System.Drawing.Size(180, 22);
+            this.다시하기ToolStripMenuItem.Text = "다시하기";
+            this.다시하기ToolStripMenuItem.Click += new System.EventHandler(this.다시하기ToolStripMenuItem_Click);
             // 
             // MainApp
             // 
@@ -121,7 +119,7 @@
             this.Controls.Add(this.menuStrip);
             this.MainMenuStrip = this.menuStrip;
             this.Name = "MainApp";
-            this.Text = "Gomoku";
+            this.Text = "오목";
             this.Load += new System.EventHandler(this.MainApp_Load);
             this.menuStrip.ResumeLayout(false);
             this.menuStrip.PerformLayout();
@@ -139,7 +137,7 @@
         private System.Windows.Forms.ToolStripMenuItem 오목ToolStripMenuItem;
         private System.Windows.Forms.ToolStripMenuItem 바둑ToolStripMenuItem;
         private System.Windows.Forms.ToolStripTextBox turnToolStripTextBox;
-        private System.Windows.Forms.ToolStripTextBox turnMarkToolStripTextBox;
+        private System.Windows.Forms.ToolStripMenuItem 다시하기ToolStripMenuItem;
     }
 }
 

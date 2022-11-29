@@ -3,19 +3,21 @@ using System.Collections.Generic;
 using System.Drawing;
 using System.Linq;
 using System.Reflection.Emit;
+using System.Runtime.CompilerServices;
 using System.Text;
 using System.Threading.Tasks;
 using System.Windows.Forms;
+using Label = System.Windows.Forms.Label;
 
 namespace Gomoku
 {
     internal class Cell
     {
-
         private int owner;
         private PictureBox pictureBox;
-        Bitmap blackBitmap;
-        Bitmap whiteBitmap;
+        private Label label;
+        private Bitmap blackBitmap;
+        private Bitmap whiteBitmap;
 
         public Cell(int x, int y, int len)
         {
@@ -26,6 +28,19 @@ namespace Gomoku
             pictureBox.Name = "pictureBox";
             pictureBox.Size = new Size(len, len);
             pictureBox.Image = blackBitmap;
+
+            label = new Label();
+            label.AutoSize = false;
+            label.Location = new System.Drawing.Point(2,0);
+            label.Name = "label";
+            label.Size = new System.Drawing.Size(len-1,len);
+            label.TextAlign = ContentAlignment.MiddleCenter;
+            label.Font = new Font("굴림", 10, FontStyle.Bold);
+            label.ForeColor = Color.Red;
+            label.Text = "";
+
+            label.Parent = pictureBox;
+            label.BackColor = Color.Transparent;
         }
 
         public int Owner {
@@ -53,6 +68,12 @@ namespace Gomoku
         {
             get { return pictureBox; }
             set { pictureBox = value; }
+        }
+
+        public string Text
+        {
+            get { return label.Text; }
+            set { label.Text = value; }
         }
     }
 }

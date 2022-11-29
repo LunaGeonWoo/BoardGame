@@ -7,6 +7,7 @@ using System.IO;
 using System.Linq;
 using System.Runtime.InteropServices;
 using System.Security.Policy;
+using System.Security.Principal;
 using System.Text;
 using System.Threading.Tasks;
 using System.Windows.Forms;
@@ -22,9 +23,9 @@ namespace Gomoku
             public const int White = 2;
         }
 
-        private static int CellLen = 40;
-
+        private const int CellLen = 40;
         private int turn = 0;
+        private int lastIndex = -1;
         private List<Cell> cells = new List<Cell>();
 
         public MainApp()
@@ -76,14 +77,105 @@ namespace Gomoku
 
         private void boardPanel_MouseDown(object sender, MouseEventArgs e)
         {
-            int x = (e.X / CellLen);
-            int y = (e.Y / CellLen);
+            int x = e.X / CellLen;
+            int y = e.Y / CellLen;
             int index = y * 19 + x;
 
             cells[index].Owner = turn % 2 + 1;
+            if (lastIndex != -1)
+                cells[lastIndex].Text = "";
+            cells[index].Text = "●";
+            lastIndex= index;
             turnToolStripTextBox.Text = (turn+1).ToString() + "수";
-            turnMarkToolStripTextBox.Text = (turn % 2 == 1) ? "검은 돌" : "하얀 돌";
             turn++;
+
+            if (WinCheck(index))
+            {
+                string winer = cells[index].Owner == Owner.Black ? "흑" : "백";
+
+                if (MessageBox.Show($"{winer} 승리. 다시하시겠습니까?", "게임 종료", MessageBoxButtons.YesNo) == DialogResult.Yes)
+                {
+                    ClearBoard();
+                }
+            }
+        }
+
+        private bool WinCheck(int index)
+        {
+            int owner = cells[index].Owner;
+            int tempIndex, cnt;
+            //가로 검사
+            tempIndex = index;
+            cnt = 0;
+            while (cells[tempIndex].Owner == owner)
+                tempIndex--;
+            tempIndex++;
+            while (cells[tempIndex].Owner == owner)
+            {
+                tempIndex += 1;
+                cnt++;
+            }
+            if (cnt == 5) return true;
+            //세로 검사
+            tempIndex = index;
+            cnt = 0;
+            while (cells[tempIndex].Owner == owner)
+                tempIndex -= 19;
+            tempIndex += 19;
+            while (cells[tempIndex].Owner == owner)
+            {
+                tempIndex += 19;
+                cnt++;
+            }
+            if (cnt == 5) return true;
+
+            //대각선 검사
+            tempIndex = index;
+            cnt = 0;
+            while (cells[tempIndex].Owner == owner)
+                tempIndex -= 20;
+            tempIndex += 20;
+            while (cells[tempIndex].Owner == owner)
+            {
+                tempIndex += 20;
+                cnt++;
+            }
+            if (cnt == 5) return true;
+
+            tempIndex = index;
+            cnt = 0;
+            while (cells[tempIndex].Owner == owner)
+                tempIndex -= 18;
+            tempIndex += 18;
+            while (cells[tempIndex].Owner == owner)
+            {
+                tempIndex += 18;
+                cnt++;
+            }
+            if (cnt == 5) return true;
+
+            return false;
+        }
+
+        private void ClearBoard()
+        {
+            for(int i=0; i<19; i++)
+                for(int j=0; j<19; j++)
+                    cells[i * 19 + j].Owner = Owner.Less;
+            turn = 0;
+            turnToolStripTextBox.Text = "";
+        }
+
+        private void boardPanel_MouseMove(object sender, MouseEventArgs e)
+        {
+            int x = e.X / CellLen;
+            int y = e.Y / CellLen;
+            Graphics graphics = boardPanel.CreateGraphics();
+        }
+
+        private void 다시하기ToolStripMenuItem_Click(object sender, EventArgs e)
+        {
+            ClearBoard();
         }
     }
 }
